@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <div>
-      <p>{`${publicRuntimeConfig.BASE_URL}/api/graphql`}</p>
+      <p>{`${publicRuntimeConfig.BASE_URL}`}</p>
       <p>{data?.hello?.name}</p>
       <button onClick={() => reexecuteQuery({ requestPolicy: 'network-only' })}>
         Refetch()
