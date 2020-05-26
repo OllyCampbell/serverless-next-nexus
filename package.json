@@ -1,15 +1,29 @@
 {
-  "name": "my-nexus-app-09847286030063818",
+  "name": "nextjs-serverless-gql",
   "license": "UNLICENSED",
   "dependencies": {
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.4.2",
+    "next-urql": "^0.3.8",
     "nexus": "0.22.0",
-    "nexus-plugin-prisma": "^0.8.0"
+    "nexus-plugin-prisma": "^0.8.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "urql": "^1.9.7"
   },
   "scripts": {
-    "format": "npx prettier --write './**/*.{ts,md}'",
-    "dev": "nexus dev",
-    "build": "nexus build",
-    "start": "node .nexus/build/api"
+    "db:migrate": "prisma migrate save --experimental && prisma migrate up --experimental",
+    "nexus:reflection": "nexus dev --reflection --entrypoint pages/api/graphql.ts",
+    "nexus:check": "nexus build --entrypoint pages/api/graphql.ts && nexus build --entrypoint pages/api/playground.ts",
+    "test": "nexus build",
+    "dev": "next dev",
+    "start": "next start",
+    "build": "nexus build && next build",
+    "deploy:preview": "now",
+    "deploy:prod": "now --prod"
   },
   "prettier": {
     "semi": false,
@@ -17,6 +31,9 @@
     "trailingComma": "all"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.35",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.3"
   }
 }
