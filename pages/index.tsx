@@ -1,7 +1,10 @@
 import gql from 'graphql-tag'
 import { useQuery } from 'urql'
+import getConfig from 'next/config'
 
 import withUrql from '../lib/withUrql'
+
+const { publicRuntimeConfig } = getConfig()
 
 const HELLO_QUERY = gql`
   query HELLO_QUERY($world: String!) {
@@ -23,7 +26,7 @@ const Home = () => {
 
   return (
     <div>
-      <p>{`${process.env.BASE_URL}/api/graphql`}</p>
+      <p>{`${publicRuntimeConfig.BASE_URL}/api/graphql`}</p>
       {/* <p>{data?.hello?.name}</p>
       <button onClick={() => reexecuteQuery({ requestPolicy: 'network-only' })}>
         Refetch()
