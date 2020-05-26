@@ -1,8 +1,10 @@
+import { dedupExchange, cacheExchange, fetchExchange } from '@urql/core'
 import { withUrqlClient } from 'next-urql'
 
 const withUrql = (Component) =>
-  withUrqlClient({
+  withUrqlClient((ssrExchange) => ({
     url: `/api/graphql`,
-  })(Component)
+    exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
+  }))(Component)
 
 export default withUrql
